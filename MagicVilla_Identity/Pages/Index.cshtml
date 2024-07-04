@@ -33,7 +33,7 @@
         </li>
     </ul>
 
-    @if(Model.License != null)
+    @* @if(Model.License != null)
     {
         <h2>License</h2>
         <dl>
@@ -42,5 +42,5 @@
             <dt>Expiration</dt>
             <dd>@Model.License.Expiration!.Value.ToLongDateString()</dd>
         </dl>
-    }
+    } *@
 </div>
