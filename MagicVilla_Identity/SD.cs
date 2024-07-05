@@ -16,20 +16,17 @@ namespace MagicVilla_Identity
                 new IdentityResources.Profile()
             };
 
-        public static IEnumerable<ApiScope> ApiScopes()
-        {
-            return new List<ApiScope>
+        public static IEnumerable<ApiScope> ApiScopes =>
+           new List<ApiScope>
             {
                 new ApiScope("magic", "Magic Server"),
                 new ApiScope(name: "read", displayName: "Read your data. "),
                 new ApiScope(name: "write", displayName: "Write your data."),
                 new ApiScope(name: "delete", displayName: "Delete your data.")
             };
-        }
 
-        public static IEnumerable<Client> Get()
-        {
-            return new List<Client>
+        public static IEnumerable<Client> Clients =>
+          new List<Client>
             {
                 new Client
                 {
@@ -38,25 +35,20 @@ namespace MagicVilla_Identity
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
                     AllowedScopes = { "api1", "api2.read_only" }
                 },
-
                 new Client
                 {
                     ClientId = "magic",
                     ClientSecrets = { new Secret("secret".Sha256()) },
                     AllowedGrantTypes = GrantTypes.Code,
-                    AllowedScopes = { "magic", 
+                    AllowedScopes = { "magic",
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.Email
                     },
                     RedirectUris={ "https://localhost:7002/signin-oidc" },
-                    PostLogoutRedirectUris= 
+                    PostLogoutRedirectUris=
                     { "https://localhost:7002/signout-callback-oidc" },
-                    
                 }
             };
-        
     }
-
-
 }
