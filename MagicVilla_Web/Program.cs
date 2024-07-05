@@ -26,6 +26,7 @@ builder.Services.AddAuthentication
                   options.DefaultScheme = CookieAuthenticationDefaults
                                             .AuthenticationScheme;
                   options.DefaultChallengeScheme = "oidc";
+
               })
               .AddCookie(options =>
               {
@@ -38,6 +39,7 @@ builder.Services.AddAuthentication
               .AddOpenIdConnect("oidc",
               options=>
               {
+                  options.RequireHttpsMetadata = false; 
                   options.Authority = builder
                   .Configuration["ServiceUrls:IdentityAPI"];
                   options.GetClaimsFromUserInfoEndpoint = true;
